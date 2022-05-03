@@ -1,14 +1,15 @@
-﻿using NewsBag.Services.Parsers;
+﻿using NewsBag.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace NewsBag.Models
 {
-    public class GlobalNewsFilter
+    public class GlobalNewsConstants
     {
        public static string filter = "";
        public static OneParser parser = new OneParser();
+        public static NewsItem SelectedItem;
         public static Dictionary<string, string> sourcesLinks = new Dictionary<string, string>()
         {
             {"rbc.ru",  $"http://static.feed.rbc.ru/rbc/logical/footer/news.rss" },

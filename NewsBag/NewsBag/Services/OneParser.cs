@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace NewsBag.Services.Parsers
+namespace NewsBag.Services
 {
     public class OneParser : IDisposable
     {
@@ -56,9 +56,15 @@ namespace NewsBag.Services.Parsers
                                     }
                                     break;
                                 case "description":
-                                    if (reader.Read() && reader.NodeType is XmlNodeType.Text)
+                                    if (reader.Read() && (reader.NodeType is XmlNodeType.Text || reader.NodeType is XmlNodeType.CDATA))
                                     {
                                         item.Description = reader.Value;
+                                        if (reader.NodeType is XmlNodeType.CDATA) while (reader.Read() && reader.NodeType != XmlNodeType.EndElement);
+                                    }
+                                    else if (source.Equals("lenta.ru") && reader.Read() && reader.NodeType is XmlNodeType.CDATA)
+                                    {
+                                        item.Description = reader.Value;
+                                        while (reader.Read() && reader.NodeType != XmlNodeType.EndElement) ;
                                     }
                                     break;
                                 case "pubDate":
@@ -91,7 +97,7 @@ namespace NewsBag.Services.Parsers
             }
             return;
         }
-       
+
 
         public void Dispose()
         {

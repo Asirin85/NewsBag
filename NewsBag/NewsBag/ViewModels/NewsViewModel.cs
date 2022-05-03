@@ -1,7 +1,7 @@
 ﻿using NewsBag.Localization;
 using NewsBag.Models;
 using NewsBag.Services;
-using NewsBag.Services.Parsers;
+using NewsBag.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,11 +21,12 @@ namespace NewsBag.ViewModels
         public Dictionary<string, ObservableCollection<NewsItem>> itemDict { get; set; }
         public Command LoadItemsCommand { get; }
         public Command<ToolbarItem> OnToolbar { get; }
-        private readonly OneParser _parser = GlobalNewsFilter.parser;
+        private readonly OneParser _parser = GlobalNewsConstants.parser;
         public Command<NewsItem> ItemTapped { get; }
         public NewsViewModel()
         {
             UpdateSources();
+            ItemTapped = new Command<NewsItem>(OnItemSelected);
             NewsItems = new ObservableCollection<NewsItem>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
         }
@@ -51,7 +52,7 @@ namespace NewsBag.ViewModels
             switch (source.ToLowerInvariant())
             {
                 case "all":
-                    await _parser.GetNews(itemDict[source.ToLowerInvariant()], source.ToLowerInvariant(), GlobalNewsFilter.sourcesLinks[source.ToLowerInvariant()]);
+                    await _parser.GetNews(itemDict[source.ToLowerInvariant()], source.ToLowerInvariant(), GlobalNewsConstants.sourcesLinks[source.ToLowerInvariant()]);
                     await AddNewNews();
                     return;
                 case "все":
@@ -60,16 +61,15 @@ namespace NewsBag.ViewModels
                     await AddNewNews();
                     return;
                 case "lenta.ru":
-                    await _parser.GetNews(itemDict[source.ToLowerInvariant()], source.ToLowerInvariant(), GlobalNewsFilter.sourcesLinks[source.ToLowerInvariant()]);
+                    await _parser.GetNews(itemDict[source.ToLowerInvariant()], source.ToLowerInvariant(), GlobalNewsConstants.sourcesLinks[source.ToLowerInvariant()]);
                     await AddNewNews();
                     return;
                 case "un.org":
-                    await _parser.GetNews(itemDict[source.ToLowerInvariant()], source.ToLowerInvariant(), GlobalNewsFilter.sourcesLinks[source.ToLowerInvariant()]);
+                    await _parser.GetNews(itemDict[source.ToLowerInvariant()], source.ToLowerInvariant(), GlobalNewsConstants.sourcesLinks[source.ToLowerInvariant()]);
                     await AddNewNews();
                     return;
                 case "rbc.ru":
-                    //await RbcParser.GetNews(itemDict[source.ToLowerInvariant()]);
-                    await _parser.GetNews(itemDict[source.ToLowerInvariant()], source.ToLowerInvariant(), GlobalNewsFilter.sourcesLinks[source.ToLowerInvariant()]);
+                    await _parser.GetNews(itemDict[source.ToLowerInvariant()], source.ToLowerInvariant(), GlobalNewsConstants.sourcesLinks[source.ToLowerInvariant()]);
                     await AddNewNews();
                     return;
                 default:
@@ -102,7 +102,7 @@ namespace NewsBag.ViewModels
         private async Task AddNewNews()
         {
             NewsItems.Clear();
-            itemDict[GlobalNewsFilter.filter.ToLowerInvariant()].ToList().ForEach(NewsItems.Add);
+            itemDict[GlobalNewsConstants.filter.ToLowerInvariant()].ToList().ForEach(NewsItems.Add);
             NewsItems.OrderByDescending(x => x.Date);
             return;
         }
@@ -111,7 +111,7 @@ namespace NewsBag.ViewModels
             IsBusy = true;
             try
             {
-                await GetNewsBySourceAsync(GlobalNewsFilter.filter);
+                await GetNewsBySourceAsync(GlobalNewsConstants.filter);
             }
             catch (Exception ex)
             {
@@ -140,9 +140,10 @@ namespace NewsBag.ViewModels
         {
             if (item == null)
                 return;
-
             // This will push the ItemDetailPage onto the navigation stack
-            // await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
+            
+            GlobalNewsConstants.SelectedItem = item;
+            await Shell.Current.GoToAsync($"{nameof(NewsDetailPage)}");
         }
 
     }
