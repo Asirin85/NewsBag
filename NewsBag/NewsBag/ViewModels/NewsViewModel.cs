@@ -17,55 +17,101 @@ namespace NewsBag.ViewModels
     public class NewsViewModel : BaseViewModel
     {
         private NewsItem _selectedItem;
-        public ObservableCollection<NewsItem> NewsItems { get; }
+        public ObservableCollection<NewsItem> NewsItems { get; set; }
+        public Dictionary<string, ObservableCollection<NewsItem>> itemDict { get; set; }
         public Command LoadItemsCommand { get; }
         public Command<ToolbarItem> OnToolbar { get; }
+        private readonly OneParser _parser = GlobalNewsFilter.parser;
         public Command<NewsItem> ItemTapped { get; }
         public NewsViewModel()
         {
+            UpdateSources();
             NewsItems = new ObservableCollection<NewsItem>();
-            OnToolbar = new Command<ToolbarItem>(OnToolBarClick);
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
         }
-        private async Task<IEnumerable<NewsItem>> GetNewsBySourceAsync(string source)
+        private void UpdateSources()
         {
-            List<NewsItem> list = new List<NewsItem>();
+            var dict = itemDict;
+            if (itemDict is null)
+                dict = new Dictionary<string, ObservableCollection<NewsItem>>();
+            var all = AppResources.SourceAll.ToLowerInvariant();
+            var sources = AppResources.Sources.ToLowerInvariant().Split(' ');
+            dict.Add(all, new ObservableCollection<NewsItem>());
+            foreach (var source in sources)
+            {
+                if (Preferences.Get(source, true))
+                    dict.Add(source, new ObservableCollection<NewsItem>());
+                else
+                    dict.Remove(source);
+            }
+            itemDict = dict;
+        }
+        private async Task GetNewsBySourceAsync(string source)
+        {
             switch (source.ToLowerInvariant())
             {
                 case "all":
-                    return await UnParser.GetNews();
+                    await _parser.GetNews(itemDict[source.ToLowerInvariant()], source.ToLowerInvariant(), GlobalNewsFilter.sourcesLinks[source.ToLowerInvariant()]);
+                    await AddNewNews();
+                    return;
                 case "все":
-                    return await GetAllRu();
+                    var sources = AppResources.Sources.ToLowerInvariant().Split(' '); 
+                    await GetAllRu(sources);
+                    await AddNewNews();
+                    return;
                 case "lenta.ru":
-                    return await LentaParser.GetNews();
+                    await _parser.GetNews(itemDict[source.ToLowerInvariant()], source.ToLowerInvariant(), GlobalNewsFilter.sourcesLinks[source.ToLowerInvariant()]);
+                    await AddNewNews();
+                    return;
                 case "un.org":
-                    return await UnParser.GetNews();
+                    await _parser.GetNews(itemDict[source.ToLowerInvariant()], source.ToLowerInvariant(), GlobalNewsFilter.sourcesLinks[source.ToLowerInvariant()]);
+                    await AddNewNews();
+                    return;
                 case "rbc.ru":
-                    return await RbcParser.GetNews();
+                    //await RbcParser.GetNews(itemDict[source.ToLowerInvariant()]);
+                    await _parser.GetNews(itemDict[source.ToLowerInvariant()], source.ToLowerInvariant(), GlobalNewsFilter.sourcesLinks[source.ToLowerInvariant()]);
+                    await AddNewNews();
+                    return;
                 default:
-                    return null;
+                    return;
             }
+
         }
-        async Task<List<NewsItem>> GetAllRu()
+        async Task GetAllRu(string[] sources)
         {
-            var Rbc = await RbcParser.GetNews();
-            var Lenta = await LentaParser.GetNews();
-            Rbc.AddRange(Lenta);
-            var result = Rbc.OrderByDescending(x => x.Date).ToList();
-            return result;
+            itemDict[AppResources.SourceAll.ToLowerInvariant()].Clear();
+            foreach (var source in sources)
+            {
+                var added = false;
+                switch (source)
+                {
+                    case "rbc.ru":
+                        await GetNewsBySourceAsync(source);
+                        added = true;
+                        break;
+                    case "lenta.ru":
+                        await GetNewsBySourceAsync(source);
+                        added = true;
+                        break;
+                }
+                if (added)
+                    itemDict[source.ToLowerInvariant()].ToList().ForEach(itemDict[AppResources.SourceAll.ToLowerInvariant()].Add);
+            }
+            return;
+        }
+        private async Task AddNewNews()
+        {
+            NewsItems.Clear();
+            itemDict[GlobalNewsFilter.filter.ToLowerInvariant()].ToList().ForEach(NewsItems.Add);
+            NewsItems.OrderByDescending(x => x.Date);
+            return;
         }
         async Task ExecuteLoadItemsCommand()
         {
             IsBusy = true;
-            var items = await GetNewsBySourceAsync(GlobalNewsFilter.filter);
             try
             {
-                NewsItems.Clear();
-                if (items != null)
-                    foreach (var item in items)
-                    {
-                        NewsItems.Add(item);
-                    }
+                await GetNewsBySourceAsync(GlobalNewsFilter.filter);
             }
             catch (Exception ex)
             {
@@ -89,10 +135,6 @@ namespace NewsBag.ViewModels
                 SetProperty(ref _selectedItem, value);
                 OnItemSelected(value);
             }
-        }
-        public void OnToolBarClick(ToolbarItem item)
-        {
-            item.Order = ToolbarItemOrder.Primary;
         }
         async void OnItemSelected(NewsItem item)
         {

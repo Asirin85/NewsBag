@@ -6,7 +6,7 @@ namespace NewsBag.Models
 {
     public class NewsItem
     {
-        public Guid ID { get; set; }
+        public string ID { get; set; }
         public string Source { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
