@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewsBag.Views.NewsDetailPage"
+			 Visual="Material">
+	<ContentPage.ToolbarItems>
+		<ToolbarItem IconImageSource="icon_bookmark" x:Name="ToolbarBookmark" Command="{Binding BookmarkCommand}">
+			
+		</ToolbarItem>
+	</ContentPage.ToolbarItems>
+	<StackLayout>
+		<ScrollView>
+			<StackLayout Spacing="20"  Padding="10">
+				<Label Text="{Binding NewsItem.Title}" FontSize="20" FontAttributes="Bold"/>
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="200"></ColumnDefinition>
+						<ColumnDefinition Width="*"></ColumnDefinition>
+					</Grid.ColumnDefinitions>
+					<Label  Text="{Binding NewsItem.Date, StringFormat='{0:dd.MM.yyyy HH:mm:ss}'}" TextColor="CadetBlue" Grid.Column="0"/>
+					<Label Text="{Binding NewsItem.Source}" TextColor="CadetBlue" Grid.Column="2"/>
+				</Grid>
+				<StackLayout HorizontalOptions="FillAndExpand">
+					<Image Source="{Binding NewsItem.ImageLink}" HeightRequest="220" Aspect="AspectFit" IsVisible="{Binding Visibility}"/>
+					<Label Text="{Binding NewsItem.Description}" FontSize="16"/>
+				</StackLayout>
+			</StackLayout>
+
+		</ScrollView>
+	</StackLayout>
+</ContentPage>

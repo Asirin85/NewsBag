@@ -6,7 +6,7 @@
        Title="NewsBag"
        x:Class="NewsBag.AppShell">
 
-    <!--
+	<!--
         The overall app visual hierarchy is defined here, along with navigation.
     
         https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/
@@ -31,12 +31,12 @@
     </Shell.Resources>
 
 	<TabBar>
-		<Tab x:Name="TabNews" Title="{x:Static resources:AppResources.TabBarNews}"  Icon="icon_about.png">
+		<Tab x:Name="TabNews" Title="{x:Static resources:AppResources.TabBarNews}"  Icon="icon_news.png">
 			
 			<ShellContent Title="{x:Static resources:AppResources.SourceAll}" ContentTemplate="{DataTemplate local:NewsPage}" Route="{x:Static resources:AppResources.SourceAll}"/>
 		</Tab>
-		<ShellContent Title="{x:Static resources:AppResources.TabBarBookmarks}" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:ItemsPage}" />
-		<ShellContent Title="{x:Static resources:AppResources.TabBarSettings}" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:NewsPage}" />
+		<ShellContent Title="{x:Static resources:AppResources.TabBarBookmarks}" Icon="icon_bookmark.png" ContentTemplate="{DataTemplate local:NewsBookmarksPage}" />
+		<ShellContent Title="{x:Static resources:AppResources.TabBarSettings}" Icon="icon_settings.png" ContentTemplate="{DataTemplate local:NewsPage}" />
 		
     </TabBar>
 

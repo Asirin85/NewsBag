@@ -117,11 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BookmarkPageTitle" xml:space="preserve">
+    <value>Bookmarks</value>
+  </data>
   <data name="SourceAll" xml:space="preserve">
     <value>All</value>
   </data>
   <data name="Sources" xml:space="preserve">
-    <value>BBC</value>
+    <value>BBC un.org</value>
   </data>
   <data name="TabBarBookmarks" xml:space="preserve">
     <value>Bookmarks</value>

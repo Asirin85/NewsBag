@@ -11,19 +11,18 @@ using Xamarin.Forms.Xaml;
 namespace NewsBag.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NewsPage : ContentPage
+    public partial class NewsBookmarksPage : ContentPage
     {
-        NewsViewModel _viewModel;
-        public NewsPage()
+        NewsBookmarksViewModel _viewModel;
+        public NewsBookmarksPage()
         {
             InitializeComponent();
-            BindingContext = _viewModel = new NewsViewModel();
+            BindingContext = _viewModel = new NewsBookmarksViewModel();
         }
         protected override void OnAppearing()
         {
             base.OnAppearing();
             _viewModel.OnAppearing();
         }
-
     }
 }

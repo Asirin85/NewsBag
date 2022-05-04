@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,19 +12,12 @@ using Xamarin.Forms.Xaml;
 namespace NewsBag.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NewsPage : ContentPage
+    public partial class NewsDetailPage : ContentPage
     {
-        NewsViewModel _viewModel;
-        public NewsPage()
+        public NewsDetailPage()
         {
             InitializeComponent();
-            BindingContext = _viewModel = new NewsViewModel();
+            BindingContext = new NewsDetailsViewModel(ToolbarBookmark);
         }
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            _viewModel.OnAppearing();
-        }
-
     }
 }

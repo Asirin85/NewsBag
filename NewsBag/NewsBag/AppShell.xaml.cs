@@ -16,6 +16,7 @@ namespace NewsBag
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
+            Routing.RegisterRoute(nameof(NewsDetailPage), typeof(NewsDetailPage));
             Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
             GetSourcesList();
         }
@@ -52,7 +53,7 @@ namespace NewsBag
             if (args.Target.Location.OriginalString.ToLowerInvariant().Contains(all))
             {
                 found = true;
-                GlobalNewsFilter.filter = all;
+                GlobalNewsConstants.filter = all;
             }
             var variants = AppResources.Sources.ToLowerInvariant().Split(' ');
             for (int i = 0; i < variants.Length && !found; i++)
@@ -60,7 +61,7 @@ namespace NewsBag
                 if (args.Target.Location.OriginalString.ToLowerInvariant().Contains(variants[i]))
                 {
                     found = true;
-                    GlobalNewsFilter.filter = variants[i];
+                    GlobalNewsConstants.filter = variants[i];
                 }
             }
         }
