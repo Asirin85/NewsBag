@@ -103,8 +103,14 @@ namespace NewsBag.ViewModels
         {
             NewsItems.Clear();
             itemDict[GlobalNewsConstants.filter.ToLowerInvariant()].ToList().ForEach(NewsItems.Add);
-            NewsItems.OrderByDescending(x => x.Date);
+            Sort(NewsItems);
             return;
+        }
+        public void Sort(ObservableCollection<NewsItem> collection)
+        {
+            List<NewsItem> sorted = collection.OrderByDescending(x => x.Date).ToList();
+            for (int i = 0; i < sorted.Count(); i++)
+                collection.Move(collection.IndexOf(sorted[i]), i);
         }
         async Task ExecuteLoadItemsCommand()
         {
