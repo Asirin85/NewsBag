@@ -20,17 +20,16 @@ namespace NewsBag.ViewModels
         public ObservableCollection<NewsItem> NewsItems { get; set; }
         public Dictionary<string, ObservableCollection<NewsItem>> itemDict { get; set; }
         public Command LoadItemsCommand { get; }
-        public Command<ToolbarItem> OnToolbar { get; }
         private readonly OneParser _parser = GlobalNewsConstants.parser;
         public Command<NewsItem> ItemTapped { get; }
         public NewsViewModel()
         {
-            UpdateSources();
+
             ItemTapped = new Command<NewsItem>(OnItemSelected);
             NewsItems = new ObservableCollection<NewsItem>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
         }
-        private void UpdateSources()
+        private async Task UpdateSources()
         {
             var dict = itemDict;
             if (itemDict is null)
@@ -56,7 +55,7 @@ namespace NewsBag.ViewModels
                     await AddNewNews();
                     return;
                 case "все":
-                    var sources = AppResources.Sources.ToLowerInvariant().Split(' '); 
+                    var sources = AppResources.Sources.ToLowerInvariant().Split(' ');
                     await GetAllRu(sources);
                     await AddNewNews();
                     return;
@@ -117,6 +116,7 @@ namespace NewsBag.ViewModels
             IsBusy = true;
             try
             {
+                await UpdateSources();
                 await GetNewsBySourceAsync(GlobalNewsConstants.filter);
             }
             catch (Exception ex)
@@ -147,7 +147,7 @@ namespace NewsBag.ViewModels
             if (item == null)
                 return;
             // This will push the ItemDetailPage onto the navigation stack
-            
+
             GlobalNewsConstants.SelectedItem = item;
             await Shell.Current.GoToAsync($"{nameof(NewsDetailPage)}");
         }

@@ -35,7 +35,7 @@
 			
 			<ShellContent Title="{x:Static resources:AppResources.SourceAll}" ContentTemplate="{DataTemplate local:NewsPage}" Route="{x:Static resources:AppResources.SourceAll}"/>
 		</Tab>
-		<ShellContent Title="{x:Static resources:AppResources.TabBarBookmarks}" Icon="icon_bookmark.png" ContentTemplate="{DataTemplate local:ItemsPage}" />
+		<ShellContent Title="{x:Static resources:AppResources.TabBarBookmarks}" Icon="icon_bookmark.png" ContentTemplate="{DataTemplate local:NewsBookmarksPage}" />
 		<ShellContent Title="{x:Static resources:AppResources.TabBarSettings}" Icon="icon_settings.png" ContentTemplate="{DataTemplate local:NewsPage}" />
 		
     </TabBar>

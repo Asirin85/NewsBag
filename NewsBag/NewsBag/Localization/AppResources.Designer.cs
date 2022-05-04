@@ -61,6 +61,15 @@ namespace NewsBag.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Закладки.
+        /// </summary>
+        public static string BookmarkPageTitle {
+            get {
+                return ResourceManager.GetString("BookmarkPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Все.
         /// </summary>
         public static string SourceAll {

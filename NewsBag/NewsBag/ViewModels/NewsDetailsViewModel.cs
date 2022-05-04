@@ -1,4 +1,5 @@
-﻿using NewsBag.Models;
+﻿using NewsBag.Database;
+using NewsBag.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -29,20 +30,23 @@ namespace NewsBag.ViewModels
         }
         public NewsDetailsViewModel(ToolbarItem toolbarItem)
         {
-            Bookmarked = CheckIfExist(NewsItem);
-            _toolbarItem = toolbarItem;
-            BookmarkCommand = new Command(OnBookmarkClicked);
             NewsItem = GlobalNewsConstants.SelectedItem;
+            _toolbarItem = toolbarItem;
+            CheckIfExist(NewsItem);
+            BookmarkCommand = new Command(OnBookmarkClicked);
             if (NewsItem.ImageExist == 1) Visibility = true;
-
         }
-        public bool CheckIfExist(NewsItem item)
+        public async void CheckIfExist(NewsItem item)
         {
-            return !Bookmarked;
+            NewsDatabase database = await NewsDatabase.Instance;
+            Bookmarked = await database.ItemExists(item.ID);
         }
         public async void OnBookmarkClicked()
         {
             Bookmarked = !Bookmarked;
+            NewsDatabase database = await NewsDatabase.Instance;
+            if (Bookmarked) await database.AddItemAsync(NewsItem);
+            else await database.DeleteItemAsync(NewsItem);
         }
     }
 }
