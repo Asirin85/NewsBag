@@ -4,7 +4,8 @@
        xmlns:local="clr-namespace:NewsBag.Views"
 	   xmlns:resources="clr-namespace:NewsBag.Localization"
        Title="NewsBag"
-       x:Class="NewsBag.AppShell">
+       x:Class="NewsBag.AppShell"
+	   Shell.NavBarIsVisible="False">
 
 	<!--
         The overall app visual hierarchy is defined here, along with navigation.
@@ -32,21 +33,12 @@
 
 	<TabBar>
 		<Tab x:Name="TabNews" Title="{x:Static resources:AppResources.TabBarNews}"  Icon="icon_news.png">
-			
-			<ShellContent Title="{x:Static resources:AppResources.SourceAll}" ContentTemplate="{DataTemplate local:NewsPage}" Route="{x:Static resources:AppResources.SourceAll}"/>
+			<ShellContent  Title="{x:Static resources:AppResources.SourceAll}" ContentTemplate="{DataTemplate local:NewsPage}" Route="{x:Static resources:AppResources.SourceAll}"/>
 		</Tab>
 		<ShellContent Title="{x:Static resources:AppResources.TabBarBookmarks}" Icon="icon_bookmark.png" ContentTemplate="{DataTemplate local:NewsBookmarksPage}" />
-		<ShellContent Title="{x:Static resources:AppResources.TabBarSettings}" Icon="icon_settings.png" ContentTemplate="{DataTemplate local:NewsPage}" />
-		
-    </TabBar>
+		<ShellContent Title="{x:Static resources:AppResources.TabBarSettings}" Icon="icon_settings.png" ContentTemplate="{DataTemplate local:SettingsPage}" Route="SettingsPage" />
 
-    <!--
-        If you would like to navigate to this content you can do so by calling
-        await Shell.Current.GoToAsync("//LoginPage");
-    -->
-    <TabBar>
-        <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
-    </TabBar>
+	</TabBar>
 
 
 </Shell>

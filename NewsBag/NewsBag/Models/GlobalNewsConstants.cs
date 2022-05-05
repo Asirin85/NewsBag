@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
+using Xamarin.Forms;
 
 namespace NewsBag.Models
 {
@@ -11,6 +11,7 @@ namespace NewsBag.Models
         public static string filter = "";
         public static OneParser parser = new OneParser();
         public static NewsItem SelectedItem;
+        public static Tab TabNews;
         public static Dictionary<string, string> sourcesLinks = new Dictionary<string, string>()
         {
             {"rbc.ru",  $"http://static.feed.rbc.ru/rbc/logical/footer/news.rss" },

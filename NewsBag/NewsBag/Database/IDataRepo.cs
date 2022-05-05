@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace NewsBag.Database
@@ -9,7 +7,6 @@ namespace NewsBag.Database
     {
         Task<int> AddItemAsync(T item);
         Task<int> DeleteItemAsync(T item);
-        //Task<T> GetItemAsync(string id);
         Task<bool> ItemExists(string id);
         Task<List<T>> GetItemsAsync();
     }

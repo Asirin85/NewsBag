@@ -70,6 +70,60 @@ namespace NewsBag.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Нажмите, чтобы открыть.
+        /// </summary>
+        public static string SettingsMapClickLabel {
+            get {
+                return ResourceManager.GetString("SettingsMapClickLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Карта.
+        /// </summary>
+        public static string SettingsMapLabel {
+            get {
+                return ResourceManager.GetString("SettingsMapLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Не выполнен вход.
+        /// </summary>
+        public static string SettingsNotLoggedLabel {
+            get {
+                return ResourceManager.GetString("SettingsNotLoggedLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Профиль.
+        /// </summary>
+        public static string SettingsProfileLabel {
+            get {
+                return ResourceManager.GetString("SettingsProfileLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Источники.
+        /// </summary>
+        public static string SettingsSourcesLabel {
+            get {
+                return ResourceManager.GetString("SettingsSourcesLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Ваш профиль.
+        /// </summary>
+        public static string SettingsYourProfleLabel {
+            get {
+                return ResourceManager.GetString("SettingsYourProfleLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Все.
         /// </summary>
         public static string SourceAll {

@@ -1,5 +1,4 @@
 ﻿using NewsBag.ViewModels;
-using System.ComponentModel;
 using Xamarin.Forms;
 
 namespace NewsBag.Views

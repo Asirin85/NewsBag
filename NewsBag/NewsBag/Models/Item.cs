@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace NewsBag.Models
+﻿namespace NewsBag.Models
 {
     public class Item
     {

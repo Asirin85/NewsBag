@@ -1,8 +1,5 @@
 ﻿using NewsBag.Services;
-using NewsBag.Views;
-using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace NewsBag
 {

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewsBag.Views.SettingsPage"
+			 Visual="Material"
+			 xmlns:local="clr-namespace:NewsBag.ViewModels" 
+			 xmlns:model="clr-namespace:NewsBag.Models"
+			 xmlns:resources="clr-namespace:NewsBag.Localization"
+			 >
+	<StackLayout>
+		<Label Margin="50,20,0,0" FontSize="18" Text="{x:Static resources:AppResources.SettingsProfileLabel}" TextColor="MediumPurple"/>
+		<StackLayout>
+			<Label Margin="50,20,0,0" Text="{x:Static resources:AppResources.SettingsYourProfleLabel}" TextColor="Black"/>
+			<Label Margin="50,0,0,0" Text="{Binding Login}"/>
+			<BoxView HeightRequest="1" Color="LightGray" IsVisible="True"/>
+			<StackLayout.GestureRecognizers>
+				<TapGestureRecognizer 
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:SettingsViewModel}}, Path=LoginTapped}"/>
+			</StackLayout.GestureRecognizers>
+		</StackLayout>
+		<StackLayout>
+			<Label Margin="50,10,0,0" Text="{x:Static resources:AppResources.SettingsMapLabel}" TextColor="Black"/>
+			<Label Margin="50,0,0,0" Text="{x:Static resources:AppResources.SettingsMapClickLabel}" TextColor="Gray"/>
+			<BoxView HeightRequest="1" Color="LightGray" IsVisible="True"/>
+			<StackLayout.GestureRecognizers>
+				<TapGestureRecognizer 
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:SettingsViewModel}}, Path=MapTapped}"/>
+			</StackLayout.GestureRecognizers>
+		</StackLayout>
+		<StackLayout Margin="50,20,20,0"  x:DataType="local:SettingsViewModel">
+			<Label FontSize="18"  Text="{x:Static resources:AppResources.SettingsSourcesLabel}" TextColor="MediumPurple"/>
+			<CollectionView ItemsSource="{Binding Settings}" Margin="0,20,0,0">
+				<CollectionView.ItemTemplate>
+					<DataTemplate>
+						<Grid x:DataType="model:SettingsModel" Margin="0,30,0,0">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"></ColumnDefinition>
+								<ColumnDefinition Width="*"></ColumnDefinition>
+							</Grid.ColumnDefinitions>
+							<Label Grid.Column="0" VerticalOptions="Start" HorizontalOptions="Start" TextColor="Black" Text="{Binding Source}" FontSize="17"/>
+							<Switch Grid.Column="1" VerticalOptions="Start" HorizontalOptions="End" Scale="1.25" Margin="0,0,10,0" IsToggled="{Binding IsOn}" OnColor="#B387CD" ThumbColor="{Binding ThumbColor, Mode=TwoWay}"/>
+						</Grid>
+					</DataTemplate>
+				</CollectionView.ItemTemplate>
+			</CollectionView>
+		</StackLayout>
+	</StackLayout>
+</ContentPage>

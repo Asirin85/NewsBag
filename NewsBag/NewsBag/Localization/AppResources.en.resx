@@ -120,6 +120,24 @@
   <data name="BookmarkPageTitle" xml:space="preserve">
     <value>Bookmarks</value>
   </data>
+  <data name="SettingsMapClickLabel" xml:space="preserve">
+    <value>Click to open</value>
+  </data>
+  <data name="SettingsMapLabel" xml:space="preserve">
+    <value>Map</value>
+  </data>
+  <data name="SettingsNotLoggedLabel" xml:space="preserve">
+    <value>Not logged in</value>
+  </data>
+  <data name="SettingsProfileLabel" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="SettingsSourcesLabel" xml:space="preserve">
+    <value>Sources</value>
+  </data>
+  <data name="SettingsYourProfleLabel" xml:space="preserve">
+    <value>Your profile</value>
+  </data>
   <data name="SourceAll" xml:space="preserve">
     <value>All</value>
   </data>

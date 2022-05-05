@@ -120,6 +120,24 @@
   <data name="BookmarkPageTitle" xml:space="preserve">
     <value>Закладки</value>
   </data>
+  <data name="SettingsMapClickLabel" xml:space="preserve">
+    <value>Нажмите, чтобы открыть</value>
+  </data>
+  <data name="SettingsMapLabel" xml:space="preserve">
+    <value>Карта</value>
+  </data>
+  <data name="SettingsNotLoggedLabel" xml:space="preserve">
+    <value>Не выполнен вход</value>
+  </data>
+  <data name="SettingsProfileLabel" xml:space="preserve">
+    <value>Профиль</value>
+  </data>
+  <data name="SettingsSourcesLabel" xml:space="preserve">
+    <value>Источники</value>
+  </data>
+  <data name="SettingsYourProfleLabel" xml:space="preserve">
+    <value>Ваш профиль</value>
+  </data>
   <data name="SourceAll" xml:space="preserve">
     <value>Все</value>
   </data>

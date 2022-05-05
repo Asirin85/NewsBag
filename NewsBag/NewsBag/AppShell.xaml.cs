@@ -1,6 +1,6 @@
 ﻿using NewsBag.Localization;
 using NewsBag.Models;
-using NewsBag.ViewModels;
+using NewsBag.Services;
 using NewsBag.Views;
 using System;
 using System.Collections.Generic;
@@ -15,34 +15,11 @@ namespace NewsBag
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
+            Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
+            Routing.RegisterRoute(nameof(MapPage), typeof(MapPage));
             Routing.RegisterRoute(nameof(NewsDetailPage), typeof(NewsDetailPage));
-            Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
-            GetSourcesList();
-        }
-        private void GetSourcesList()
-        {
-            var sour = AppResources.Sources.Split(' ');
-            _sources = new List<string>(sour);
-            var loopSources = new List<string>(sour);
-            foreach (var source in loopSources)
-            {
-                var shell = new ShellContent();
-                shell.Content = new NewsPage();
-                shell.Title = source;
-                shell.Route = source;
-                if (!Preferences.Get(source, true))
-                {
-                    _sources.Remove(source);
-                    if (TabNews.Items.Contains(shell)) TabNews.Items.Remove(shell);
-                    Routing.UnRegisterRoute(nameof(shell.Title));
-                }
-                else
-                {
-                    if (!TabNews.Items.Contains(shell)) TabNews.Items.Add(shell);
-                    Routing.RegisterRoute(nameof(shell.Title), typeof(NewItemPage));
-                }
-            }
+            GlobalNewsConstants.TabNews = TabNews;
+            AvailableSources.GetSources();
         }
         protected override void OnNavigating(ShellNavigatingEventArgs args)
         {
