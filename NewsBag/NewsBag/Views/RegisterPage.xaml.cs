@@ -1,18 +1,24 @@
 ﻿using NewsBag.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace NewsBag.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LoginPage : ContentPage
+    public partial class RegisterPage : ContentPage
     {
-        public LoginPage()
+        public RegisterPage()
         {
             Shell.SetNavBarIsVisible(this, true);
             Shell.SetTabBarIsVisible(this, false);
             InitializeComponent();
-            this.BindingContext = new LoginViewModel();
+            BindingContext = new RegisterViewModel();
         }
     }
 }

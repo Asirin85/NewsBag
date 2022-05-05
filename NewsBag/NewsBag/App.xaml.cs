@@ -1,8 +1,5 @@
 ﻿using NewsBag.Services;
-using NewsBag.Views;
-using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace NewsBag
 {
@@ -12,8 +9,6 @@ namespace NewsBag
         public App()
         {
             InitializeComponent();
-
-            DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
         }
 

@@ -1,7 +1,5 @@
 ﻿using SQLite;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace NewsBag.Models
 {
@@ -16,7 +14,7 @@ namespace NewsBag.Models
         public string Link { get; set; }
         public string ImageLink
         {
-            get;set;
+            get; set;
         }
         public int ImageExist { get; set; } = 2;
     }

@@ -117,14 +117,71 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BadPassword" xml:space="preserve">
+    <value>Check your password</value>
+  </data>
+  <data name="BadReqError" xml:space="preserve">
+    <value>Request error</value>
+  </data>
+  <data name="BadReqTextLogin" xml:space="preserve">
+    <value>User with such username and password was not found</value>
+  </data>
+  <data name="BadReqTextRegister" xml:space="preserve">
+    <value>User with such username already exists</value>
+  </data>
+  <data name="BadUsername" xml:space="preserve">
+    <value>Check your username</value>
+  </data>
   <data name="BookmarkPageTitle" xml:space="preserve">
     <value>Bookmarks</value>
+  </data>
+  <data name="DoHaveAccount" xml:space="preserve">
+    <value>Already have an account? Sign in</value>
+  </data>
+  <data name="DontHaveAccount" xml:space="preserve">
+    <value>Don't have an account yet? Sign up</value>
+  </data>
+  <data name="ErrorInput" xml:space="preserve">
+    <value>Input error</value>
+  </data>
+  <data name="LoginLabelAndButton" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="LoginPlaceholder" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="LogOutButton" xml:space="preserve">
+    <value>Log out</value>
+  </data>
+  <data name="PasswordPlaceholder" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="RegisterLabelAndButton" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="SettingsMapClickLabel" xml:space="preserve">
+    <value>Click to open</value>
+  </data>
+  <data name="SettingsMapLabel" xml:space="preserve">
+    <value>Map</value>
+  </data>
+  <data name="SettingsNotLoggedLabel" xml:space="preserve">
+    <value>Not logged in</value>
+  </data>
+  <data name="SettingsProfileLabel" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="SettingsSourcesLabel" xml:space="preserve">
+    <value>Sources</value>
+  </data>
+  <data name="SettingsYourProfleLabel" xml:space="preserve">
+    <value>Your profile</value>
   </data>
   <data name="SourceAll" xml:space="preserve">
     <value>All</value>
   </data>
   <data name="Sources" xml:space="preserve">
-    <value>BBC un.org</value>
+    <value>lenta.ru rbc.ru un.org</value>
   </data>
   <data name="TabBarBookmarks" xml:space="preserve">
     <value>Bookmarks</value>
@@ -134,5 +191,8 @@
   </data>
   <data name="TabBarSettings" xml:space="preserve">
     <value>Settings</value>
+  </data>
+  <data name="YourLogin" xml:space="preserve">
+    <value>Your login:</value>
   </data>
 </root>

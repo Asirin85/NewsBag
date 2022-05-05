@@ -1,9 +1,4 @@
 ﻿using NewsBag.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -16,6 +11,7 @@ namespace NewsBag.Views
         NewsBookmarksViewModel _viewModel;
         public NewsBookmarksPage()
         {
+            Shell.SetNavBarIsVisible(this, true);
             InitializeComponent();
             BindingContext = _viewModel = new NewsBookmarksViewModel();
         }

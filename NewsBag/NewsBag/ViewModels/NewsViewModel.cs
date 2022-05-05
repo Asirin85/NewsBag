@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -24,7 +23,6 @@ namespace NewsBag.ViewModels
         public Command<NewsItem> ItemTapped { get; }
         public NewsViewModel()
         {
-
             ItemTapped = new Command<NewsItem>(OnItemSelected);
             NewsItems = new ObservableCollection<NewsItem>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
@@ -36,11 +34,17 @@ namespace NewsBag.ViewModels
                 dict = new Dictionary<string, ObservableCollection<NewsItem>>();
             var all = AppResources.SourceAll.ToLowerInvariant();
             var sources = AppResources.Sources.ToLowerInvariant().Split(' ');
-            dict.Add(all, new ObservableCollection<NewsItem>());
+            if (!dict.ContainsKey(all))
+                dict.Add(all, new ObservableCollection<NewsItem>());
+            else dict[all] = new ObservableCollection<NewsItem>();
             foreach (var source in sources)
             {
                 if (Preferences.Get(source, true))
-                    dict.Add(source, new ObservableCollection<NewsItem>());
+                {
+                    if (!dict.ContainsKey(source))
+                        dict.Add(source, new ObservableCollection<NewsItem>());
+                    else dict[source] = new ObservableCollection<NewsItem>();
+                }
                 else
                     dict.Remove(source);
             }
@@ -51,12 +55,13 @@ namespace NewsBag.ViewModels
             switch (source.ToLowerInvariant())
             {
                 case "all":
-                    await _parser.GetNews(itemDict[source.ToLowerInvariant()], source.ToLowerInvariant(), GlobalNewsConstants.sourcesLinks[source.ToLowerInvariant()]);
+                    var sources1 = AppResources.Sources.ToLowerInvariant().Split(' ');
+                    await GetAll(sources1); 
                     await AddNewNews();
                     return;
                 case "все":
                     var sources = AppResources.Sources.ToLowerInvariant().Split(' ');
-                    await GetAllRu(sources);
+                    await GetAll(sources);
                     await AddNewNews();
                     return;
                 case "lenta.ru":
@@ -76,23 +81,28 @@ namespace NewsBag.ViewModels
             }
 
         }
-        async Task GetAllRu(string[] sources)
+        async Task GetAll(string[] sources)
         {
             itemDict[AppResources.SourceAll.ToLowerInvariant()].Clear();
             foreach (var source in sources)
             {
                 var added = false;
-                switch (source)
-                {
-                    case "rbc.ru":
-                        await GetNewsBySourceAsync(source);
-                        added = true;
-                        break;
-                    case "lenta.ru":
-                        await GetNewsBySourceAsync(source);
-                        added = true;
-                        break;
-                }
+                if (Preferences.Get(source, true))
+                    switch (source)
+                    {
+                        case "rbc.ru":
+                            await GetNewsBySourceAsync(source);
+                            added = true;
+                            break;
+                        case "lenta.ru":
+                            await GetNewsBySourceAsync(source);
+                            added = true;
+                            break;
+                        case "un.org":
+                            await GetNewsBySourceAsync(source);
+                            added = true;
+                            break;
+                    }
                 if (added)
                     itemDict[source.ToLowerInvariant()].ToList().ForEach(itemDict[AppResources.SourceAll.ToLowerInvariant()].Add);
             }
@@ -146,7 +156,6 @@ namespace NewsBag.ViewModels
         {
             if (item == null)
                 return;
-            // This will push the ItemDetailPage onto the navigation stack
 
             GlobalNewsConstants.SelectedItem = item;
             await Shell.Current.GoToAsync($"{nameof(NewsDetailPage)}");
