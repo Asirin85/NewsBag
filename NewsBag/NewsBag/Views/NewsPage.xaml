@@ -32,7 +32,7 @@
 							<Image Source="{Binding ImageLink}" Grid.Column="1"></Image>
 							<Grid>
 								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="200"></ColumnDefinition>
+									<ColumnDefinition Width="*"></ColumnDefinition>
 									<ColumnDefinition Width="*"></ColumnDefinition>
 								</Grid.ColumnDefinitions>
 								<Label Text="{Binding Date, StringFormat='{0:dd.MM.yyyy HH:mm:ss}'}" 
@@ -48,6 +48,7 @@
 									Grid.Column="1"
 									Grid.Row="2"
 									VerticalTextAlignment="End"
+									   HorizontalOptions="End"
 									LineBreakMode="NoWrap" 
 									Style="{DynamicResource ListItemTextStyle}"
 									TextColor="CadetBlue"

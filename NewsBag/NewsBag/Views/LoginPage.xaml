@@ -4,10 +4,21 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="NewsBag.Views.LoginPage">
-    <ContentPage.Content>
-        <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
-            <Button VerticalOptions="Center" Text="Login" Command="{Binding LoginCommand}"/>
-        </StackLayout>
-    </ContentPage.Content>
+			 Visual="Material"
+             x:Class="NewsBag.Views.LoginPage"
+			 xmlns:resources="clr-namespace:NewsBag.Localization">
+
+	<StackLayout Padding="10,0,10,0" >
+		<Grid VerticalOptions="CenterAndExpand" Padding="10">
+			<Label Text="{x:Static resources:AppResources.LoginLabelAndButton}" Grid.Row="1" HorizontalOptions="Center" FontSize="25" TextColor="MediumPurple"/>
+			<Entry Text="{Binding User.username}" Placeholder="{x:Static resources:AppResources.LoginPlaceholder}" Grid.Row="2"/>
+			<Entry Text="{Binding User.password}" IsPassword="True" Placeholder="{x:Static resources:AppResources.PasswordPlaceholder}" Grid.Row="3"/>
+			<Label Text="{x:Static resources:AppResources.DontHaveAccount}" Padding="10" TextColor="#7AB5E9" Grid.Row="4" HorizontalOptions="Center">
+				<Label.GestureRecognizers>
+					<TapGestureRecognizer Command="{Binding SignUpCommand}" />
+				</Label.GestureRecognizers>
+			</Label>
+		</Grid>
+		<Button Text="{x:Static resources:AppResources.LoginLabelAndButton}" TextTransform="Uppercase" VerticalOptions="EndAndExpand" Margin="0,0,0,10" BackgroundColor="MediumPurple" Command="{Binding LoginCommand}"/>
+	</StackLayout>
 </ContentPage>

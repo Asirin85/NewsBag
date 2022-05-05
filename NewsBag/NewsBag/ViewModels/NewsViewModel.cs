@@ -98,6 +98,10 @@ namespace NewsBag.ViewModels
                             await GetNewsBySourceAsync(source);
                             added = true;
                             break;
+                        case "un.org":
+                            await GetNewsBySourceAsync(source);
+                            added = true;
+                            break;
                     }
                 if (added)
                     itemDict[source.ToLowerInvariant()].ToList().ForEach(itemDict[AppResources.SourceAll.ToLowerInvariant()].Add);

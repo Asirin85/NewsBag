@@ -14,7 +14,18 @@ namespace NewsBag.ViewModels
     public class SettingsViewModel : BaseViewModel
     {
         public ObservableCollection<SettingsModel> Settings { get; set; }
-        public string Login { get; set; }
+        string _login;
+        public string Login
+        {
+            get
+            {
+                return _login;
+            }
+            set
+            {
+                SetProperty(ref _login, value);
+            }
+        }
         public Command LoginTapped { get; }
         public Command MapTapped { get; }
         public SettingsViewModel()
@@ -22,12 +33,25 @@ namespace NewsBag.ViewModels
             LoginTapped = new Command(OnLoginTapped);
             MapTapped = new Command(OnMapTapped);
             Settings = new ObservableCollection<SettingsModel>();
-            Login = AppResources.SettingsNotLoggedLabel;
+            GetLogin();
             GetSettings();
+            MessagingCenter.Subscribe<Object, string>(this, "UsernameSettings", (snd, arg) =>
+            {
+                Login = arg;
+            });
         }
+        public async void GetLogin()
+        {
+            Login = await SecureStorage.GetAsync("username");
+            if (Login == null) Login = AppResources.SettingsNotLoggedLabel;
+        }
+
         async void OnLoginTapped()
         {
-            await Shell.Current.GoToAsync($"{nameof(LoginPage)}");
+            if (await SecureStorage.GetAsync("username") != null && await SecureStorage.GetAsync("token") != null)
+                await Shell.Current.GoToAsync($"{nameof(ProfilePage)}");
+            else
+                await Shell.Current.GoToAsync($"{nameof(LoginPage)}");
         }
         async void OnMapTapped()
         {

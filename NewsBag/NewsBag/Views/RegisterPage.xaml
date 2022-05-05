@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewsBag.Views.RegisterPage"
+			 Visual="Material"
+			 xmlns:resources="clr-namespace:NewsBag.Localization">
+	
+	<StackLayout Padding="10,0,10,0" >
+		<Grid VerticalOptions="CenterAndExpand" Padding="10">
+			<Label Text="{x:Static resources:AppResources.RegisterLabelAndButton}" Grid.Row="1" HorizontalOptions="Center" FontSize="25" TextColor="MediumPurple"/>
+			<Entry Text="{Binding User.username}" Placeholder="{x:Static resources:AppResources.LoginPlaceholder}" Grid.Row="2"/>
+			<Entry Text="{Binding User.password}" IsPassword="True" Placeholder="{x:Static resources:AppResources.PasswordPlaceholder}" Grid.Row="3"/>
+			<Label Text="{x:Static resources:AppResources.DoHaveAccount}" Padding="10" TextColor="#7AB5E9" Grid.Row="4" HorizontalOptions="Center">
+				<Label.GestureRecognizers>
+					<TapGestureRecognizer Command="{Binding SignInCommand}" />
+				</Label.GestureRecognizers>
+			</Label>
+		</Grid>
+		<Button TextTransform="Uppercase" VerticalOptions="EndAndExpand" Margin="0,0,0,10" BackgroundColor="MediumPurple" Text="{x:Static resources:AppResources.RegisterLabelAndButton}" Command="{Binding RegisterCommand}"/>
+	</StackLayout>
+</ContentPage>

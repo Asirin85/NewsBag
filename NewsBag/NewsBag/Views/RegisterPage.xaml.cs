@@ -11,13 +11,14 @@ using Xamarin.Forms.Xaml;
 namespace NewsBag.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SettingsPage : ContentPage
+    public partial class RegisterPage : ContentPage
     {
-        SettingsViewModel _viewModel;
-        public SettingsPage()
+        public RegisterPage()
         {
-            BindingContext = _viewModel = new SettingsViewModel();
+            Shell.SetNavBarIsVisible(this, true);
+            Shell.SetTabBarIsVisible(this, false);
             InitializeComponent();
+            BindingContext = new RegisterViewModel();
         }
     }
 }

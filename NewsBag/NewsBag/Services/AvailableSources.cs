@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-
+using System.Linq;
 namespace NewsBag.Services
 {
     public class AvailableSources
@@ -19,38 +19,48 @@ namespace NewsBag.Services
             var loopSources = new List<string>(sour);
             foreach (var source in loopSources)
             {
-                var shell = new ShellContent();
-                shell.Content = new NewsPage();
-                shell.Title = source;
-                shell.Route = source;
                 if (!Preferences.Get(source, true))
                 {
                     _sources.Remove(source);
-                    if (GlobalNewsConstants.TabNews.Items.Contains(shell)) GlobalNewsConstants.TabNews.Items.Remove(shell);
-                    Routing.UnRegisterRoute(nameof(shell.Title));
+                    var foundShell = GlobalNewsConstants.TabNewsItems.Where(x => x.Title.Equals(source)).FirstOrDefault();
+                    GlobalNewsConstants.TabNews.Items.Remove(foundShell);
+                    GlobalNewsConstants.TabNewsItems.Remove(foundShell);
+                    Routing.UnRegisterRoute(nameof(source));
                 }
                 else
                 {
-                    if (!GlobalNewsConstants.TabNews.Items.Contains(shell)) GlobalNewsConstants.TabNews.Items.Add(shell);
-                    Routing.RegisterRoute(nameof(shell.Title), typeof(NewsPage));
+                    var shell = new ShellContent
+                    {
+                        Content = new NewsPage(),
+                        Title = source,
+                        Route = source
+                    };
+                    GlobalNewsConstants.TabNewsItems.Add(shell);
+                    GlobalNewsConstants.TabNews.Items.Add(shell);
+                    Routing.RegisterRoute(nameof(source), typeof(NewsPage));
                 }
             }
             return;
         }
         public static void ChangeSource(string source, bool add)
         {
-            var shell = new ShellContent();
-            shell.Content = new NewsPage();
-            shell.Title = source;
-            shell.Route = source;
             if (add)
             {
-                if (!GlobalNewsConstants.TabNews.Items.Contains(shell)) GlobalNewsConstants.TabNews.Items.Add(shell);
+                var shell = new ShellContent
+                {
+                    Content = new NewsPage(),
+                    Title = source,
+                    Route = source
+                };
+                GlobalNewsConstants.TabNewsItems.Add(shell);
+                GlobalNewsConstants.TabNews.Items.Add(shell);
                 Routing.RegisterRoute(nameof(source), typeof(NewsPage));
             }
             else
             {
-                if (GlobalNewsConstants.TabNews.Items.Contains(shell)) GlobalNewsConstants.TabNews.Items.Remove(shell);
+                var foundShell = GlobalNewsConstants.TabNewsItems.Where(x => x.Title.Equals(source)).FirstOrDefault();
+                GlobalNewsConstants.TabNews.Items.Remove(foundShell);
+                GlobalNewsConstants.TabNewsItems.Remove(foundShell);
                 Routing.UnRegisterRoute(nameof(source));
             }
         }

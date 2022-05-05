@@ -61,11 +61,128 @@ namespace NewsBag.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Проверьте ваш пароль.
+        /// </summary>
+        public static string BadPassword {
+            get {
+                return ResourceManager.GetString("BadPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Ошибка доступа.
+        /// </summary>
+        public static string BadReqError {
+            get {
+                return ResourceManager.GetString("BadReqError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Пользователь с таким логином и паролем не найден.
+        /// </summary>
+        public static string BadReqTextLogin {
+            get {
+                return ResourceManager.GetString("BadReqTextLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Пользователь с таким логином уже существует.
+        /// </summary>
+        public static string BadReqTextRegister {
+            get {
+                return ResourceManager.GetString("BadReqTextRegister", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Проверьте ваш логин.
+        /// </summary>
+        public static string BadUsername {
+            get {
+                return ResourceManager.GetString("BadUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Закладки.
         /// </summary>
         public static string BookmarkPageTitle {
             get {
                 return ResourceManager.GetString("BookmarkPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Уже есть аккаунт? Войти.
+        /// </summary>
+        public static string DoHaveAccount {
+            get {
+                return ResourceManager.GetString("DoHaveAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Еще нет аккаунта? Зарегистрироваться.
+        /// </summary>
+        public static string DontHaveAccount {
+            get {
+                return ResourceManager.GetString("DontHaveAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Ошибка ввода.
+        /// </summary>
+        public static string ErrorInput {
+            get {
+                return ResourceManager.GetString("ErrorInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Вход.
+        /// </summary>
+        public static string LoginLabelAndButton {
+            get {
+                return ResourceManager.GetString("LoginLabelAndButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Логин.
+        /// </summary>
+        public static string LoginPlaceholder {
+            get {
+                return ResourceManager.GetString("LoginPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Выйти.
+        /// </summary>
+        public static string LogOutButton {
+            get {
+                return ResourceManager.GetString("LogOutButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Пароль.
+        /// </summary>
+        public static string PasswordPlaceholder {
+            get {
+                return ResourceManager.GetString("PasswordPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Регистрация.
+        /// </summary>
+        public static string RegisterLabelAndButton {
+            get {
+                return ResourceManager.GetString("RegisterLabelAndButton", resourceCulture);
             }
         }
         
@@ -165,6 +282,15 @@ namespace NewsBag.Localization {
         public static string TabBarSettings {
             get {
                 return ResourceManager.GetString("TabBarSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Ваш логин:.
+        /// </summary>
+        public static string YourLogin {
+            get {
+                return ResourceManager.GetString("YourLogin", resourceCulture);
             }
         }
     }
