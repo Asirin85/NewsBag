@@ -18,11 +18,21 @@ namespace NewsBag.ViewModels
         public Command LoadItemsCommand { get; }
         public Command<ToolbarItem> OnToolbar { get; }
         public Command<NewsItem> ItemTapped { get; }
+        private NewsRepository _newsRepository;
+
         public NewsBookmarksViewModel()
         {
+            SetupRepo();
             ItemTapped = new Command<NewsItem>(OnItemSelected);
             NewsItems = new ObservableCollection<NewsItem>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+
+        }
+        private async void SetupRepo()
+        {
+            var connection = await DatabaseConnection.GetConnection();
+            _newsRepository = new NewsRepository(connection);
+            await ExecuteLoadItemsCommand();
         }
         async Task ExecuteLoadItemsCommand()
         {
@@ -42,11 +52,13 @@ namespace NewsBag.ViewModels
         }
         public async Task GetBookmarkedNews()
         {
-            NewsDatabase database = await NewsDatabase.Instance;
-            var list = await database.GetItemsAsync();
-            NewsItems.Clear();
-            list.ForEach(NewsItems.Add);
-            Sort(NewsItems);
+            if (_newsRepository != null)
+            {
+                var list = await _newsRepository.GetItemsAsync();
+                NewsItems.Clear();
+                list.ForEach(NewsItems.Add);
+                Sort(NewsItems);
+            }
         }
         public void Sort(ObservableCollection<NewsItem> collection)
         {

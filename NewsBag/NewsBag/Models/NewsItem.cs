@@ -17,5 +17,20 @@ namespace NewsBag.Models
             get; set;
         }
         public int ImageExist { get; set; } = 2;
+        public NewsItem()
+        {
+
+        }
+        public NewsItem(string iD, string source, string title, string description, DateTimeOffset date, string link, string imageLink, int imageExist)
+        {
+            ID = iD;
+            Source = source;
+            Title = title;
+            Description = description;
+            Date = date;
+            Link = link;
+            ImageLink = imageLink;
+            ImageExist = imageExist;
+        }
     }
 }

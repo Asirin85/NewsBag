@@ -11,6 +11,7 @@ namespace NewsBag.ViewModels
         public Command BookmarkCommand { get; }
         private bool _isBookmarked = false;
         private ToolbarItem _toolbarItem;
+        private NewsRepository _newsRepository;
         public bool Bookmarked
         {
             get
@@ -28,22 +29,32 @@ namespace NewsBag.ViewModels
         public NewsDetailsViewModel(ToolbarItem toolbarItem)
         {
             NewsItem = GlobalNewsConstants.SelectedItem;
+            SetupRepo();
             _toolbarItem = toolbarItem;
             CheckIfExist(NewsItem);
             BookmarkCommand = new Command(OnBookmarkClicked);
             if (NewsItem.ImageExist == 1) Visibility = true;
+
+        }
+        private async void SetupRepo()
+        {
+            var connection = await DatabaseConnection.GetConnection();
+            _newsRepository = new NewsRepository(connection);
+            CheckIfExist(NewsItem);
         }
         public async void CheckIfExist(NewsItem item)
         {
-            NewsDatabase database = await NewsDatabase.Instance;
-            Bookmarked = await database.ItemExists(item.ID);
+            if (_newsRepository != null)
+                Bookmarked = await _newsRepository.ItemExists(item.ID);
         }
         public async void OnBookmarkClicked()
         {
-            Bookmarked = !Bookmarked;
-            NewsDatabase database = await NewsDatabase.Instance;
-            if (Bookmarked) await database.AddItemAsync(NewsItem);
-            else await database.DeleteItemAsync(NewsItem);
+            if (_newsRepository != null)
+            {
+                Bookmarked = !Bookmarked;
+                if (Bookmarked) await _newsRepository.AddItemAsync(NewsItem);
+                else await _newsRepository.DeleteItemAsync(NewsItem);
+            }
         }
     }
 }

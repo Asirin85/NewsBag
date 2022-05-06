@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32413.511
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsBag.Android", "NewsBag\NewsBag.Android\NewsBag.Android.csproj", "{1A5C7ABB-5245-4110-AD88-C30CF084BB9B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsBag.iOS", "NewsBag\NewsBag.iOS\NewsBag.iOS.csproj", "{33433089-7D19-43E9-9F0A-5FDFBD7432A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsBag", "NewsBag\NewsBag\NewsBag.csproj", "{FD8A17F8-44EA-4E1B-A1D1-7B66DFDD7723}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewsBag", "NewsBag\NewsBag\NewsBag.csproj", "{FD8A17F8-44EA-4E1B-A1D1-7B66DFDD7723}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsBagTests", "NewsBagTests\NewsBagTests.csproj", "{0552A172-A577-4F3C-8581-B4D4DDD7FDF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +75,18 @@ Global
 		{FD8A17F8-44EA-4E1B-A1D1-7B66DFDD7723}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{FD8A17F8-44EA-4E1B-A1D1-7B66DFDD7723}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{FD8A17F8-44EA-4E1B-A1D1-7B66DFDD7723}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU
+		{0552A172-A577-4F3C-8581-B4D4DDD7FDF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0552A172-A577-4F3C-8581-B4D4DDD7FDF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0552A172-A577-4F3C-8581-B4D4DDD7FDF9}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{0552A172-A577-4F3C-8581-B4D4DDD7FDF9}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{0552A172-A577-4F3C-8581-B4D4DDD7FDF9}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{0552A172-A577-4F3C-8581-B4D4DDD7FDF9}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{0552A172-A577-4F3C-8581-B4D4DDD7FDF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0552A172-A577-4F3C-8581-B4D4DDD7FDF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0552A172-A577-4F3C-8581-B4D4DDD7FDF9}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{0552A172-A577-4F3C-8581-B4D4DDD7FDF9}.Release|iPhone.Build.0 = Release|Any CPU
+		{0552A172-A577-4F3C-8581-B4D4DDD7FDF9}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{0552A172-A577-4F3C-8581-B4D4DDD7FDF9}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
