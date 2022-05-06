@@ -19,7 +19,7 @@ namespace NewsBag.ViewModels
         public ObservableCollection<NewsItem> NewsItems { get; set; }
         public Dictionary<string, ObservableCollection<NewsItem>> itemDict { get; set; }
         public Command LoadItemsCommand { get; }
-        private readonly OneParser _parser = GlobalNewsConstants.parser;
+        private readonly XmlGetter _xmlGetter = GlobalNewsConstants.xmlGetter;
         public Command<NewsItem> ItemTapped { get; }
         public NewsViewModel()
         {
@@ -65,15 +65,21 @@ namespace NewsBag.ViewModels
                     await AddNewNews();
                     return;
                 case "lenta.ru":
-                    await _parser.GetNews(itemDict[source.ToLowerInvariant()], source.ToLowerInvariant(), GlobalNewsConstants.sourcesLinks[source.ToLowerInvariant()]);
+                    var stream = _xmlGetter.GetNews(GlobalNewsConstants.sourcesLinks[source.ToLowerInvariant()]);
+                    await OneParser.GetNews(itemDict[source.ToLowerInvariant()], source.ToLowerInvariant(), stream);
+                    stream.Dispose();
                     await AddNewNews();
                     return;
                 case "un.org":
-                    await _parser.GetNews(itemDict[source.ToLowerInvariant()], source.ToLowerInvariant(), GlobalNewsConstants.sourcesLinks[source.ToLowerInvariant()]);
+                     stream = _xmlGetter.GetNews(GlobalNewsConstants.sourcesLinks[source.ToLowerInvariant()]);
+                    await OneParser.GetNews(itemDict[source.ToLowerInvariant()], source.ToLowerInvariant(), stream);
+                    stream.Dispose();
                     await AddNewNews();
                     return;
                 case "rbc.ru":
-                    await _parser.GetNews(itemDict[source.ToLowerInvariant()], source.ToLowerInvariant(), GlobalNewsConstants.sourcesLinks[source.ToLowerInvariant()]);
+                     stream = _xmlGetter.GetNews(GlobalNewsConstants.sourcesLinks[source.ToLowerInvariant()]);
+                    await OneParser.GetNews(itemDict[source.ToLowerInvariant()], source.ToLowerInvariant(), stream);
+                    stream.Dispose();
                     await AddNewNews();
                     return;
                 default:

@@ -10,7 +10,7 @@ namespace NewsBag.Models
     public class GlobalNewsConstants
     {
         public static string filter = "";
-        public static readonly OneParser parser = new OneParser();
+        public static readonly XmlGetter xmlGetter = new XmlGetter();
         public static NewsItem SelectedItem;
         public static Tab TabNews;
         public static List<ShellContent> TabNewsItems = new List<ShellContent>();

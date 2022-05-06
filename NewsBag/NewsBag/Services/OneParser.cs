@@ -2,6 +2,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -9,19 +10,11 @@ using System.Xml;
 
 namespace NewsBag.Services
 {
-    public class OneParser : IDisposable
+    public class OneParser
     {
-        private static WebClient _client;
-        private bool _disposed;
-        public OneParser()
+        public static async Task GetNews(ObservableCollection<NewsItem> list, string source, Stream xmlStream)
         {
-            _client = new WebClient();
-        }
-        public async Task GetNews(ObservableCollection<NewsItem> list, string source, string sourceLink)
-        {
-            if (_disposed) { throw new ObjectDisposedException(_client.GetType().FullName); }
-            _client.Headers.Add("user-agent", "MyRSSReader/1.0");
-            using (XmlTextReader reader = new XmlTextReader(_client.OpenRead(sourceLink)))
+            using (XmlTextReader reader = new XmlTextReader(xmlStream))
             {
                 reader.MoveToContent();
                 while (reader.Read())
@@ -93,16 +86,8 @@ namespace NewsBag.Services
 
                 }
             }
+
             return;
-        }
-
-
-        public void Dispose()
-        {
-            if (_disposed) { return; }
-            _client.Dispose();
-            GC.SuppressFinalize(this);
-            _disposed = true;
         }
     }
 }
