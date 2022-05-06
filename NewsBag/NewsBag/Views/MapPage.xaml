@@ -1,12 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NewsBag.Views.MapPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+             x:Class="NewsBag.Views.MapPage"
+			 xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+			 Visual="Material">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="10"/>
+			<RowDefinition Height="50"/>
+		</Grid.RowDefinitions>
+		<maps:Map x:Name="map" IsShowingUser="True"  Grid.RowSpan="10"/>
+		<Button Scale="1.25" x:Name="MapButton" Text="✓" FontSize="25" BackgroundColor="MediumPurple" Grid.Row="1" WidthRequest="50" HeightRequest="50" BorderRadius="25" HorizontalOptions="Start" Margin="20,0,0,0" Clicked="Button_Clicked"/>
+	</Grid>
 </ContentPage>

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace NewsBag.Models
+﻿namespace NewsBag.Models
 {
     public class User
     {

@@ -1,5 +1,4 @@
-﻿using NewsBag.Localization;
-using NewsBag.Services;
+﻿using NewsBag.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,8 +14,8 @@ namespace NewsBag.Models
         public static NewsItem SelectedItem;
         public static Tab TabNews;
         public static List<ShellContent> TabNewsItems = new List<ShellContent>();
-        
-        
+
+
         public static readonly HttpClient httpClient = new HttpClient();
         public static readonly string apiLogin = "http://192.168.253.2:8090/api/login";
         public static readonly string apiRegister = "http://192.168.253.2:8090/api/registration";

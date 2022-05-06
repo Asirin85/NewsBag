@@ -1,8 +1,5 @@
 ﻿using NewsBag.Services;
 using NewsBag.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -14,7 +11,8 @@ namespace NewsBag.Models
         private bool isOn = false;
         public bool IsOn
         {
-            get {
+            get
+            {
                 return isOn;
             }
             set

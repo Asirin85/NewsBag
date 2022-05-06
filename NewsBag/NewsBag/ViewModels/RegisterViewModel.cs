@@ -3,7 +3,6 @@ using NewsBag.Models;
 using NewsBag.Views;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using Xamarin.Essentials;

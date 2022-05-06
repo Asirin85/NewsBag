@@ -3,14 +3,8 @@ using NewsBag.Models;
 using NewsBag.Views;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Security;
 using System.Text;
-using System.Web;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -44,7 +38,7 @@ namespace NewsBag.ViewModels
                     var result = response.Content.ReadAsStringAsync().Result;
                     Console.WriteLine(result);
                     ResponseToken token = JsonConvert.DeserializeObject<ResponseToken>(result);
-                    
+
                     if (token != null)
                     {
                         await SecureStorage.SetAsync("token", token.token);
@@ -53,7 +47,8 @@ namespace NewsBag.ViewModels
                     }
                     MessagingCenter.Send<Object, string>(this, "UsernameSettings", username);
                     await Shell.Current.GoToAsync($"//{nameof(SettingsPage)}/{nameof(ProfilePage)}");
-                }else await Application.Current.MainPage.DisplayAlert(AppResources.BadReqError, AppResources.BadReqTextLogin, "OK");
+                }
+                else await Application.Current.MainPage.DisplayAlert(AppResources.BadReqError, AppResources.BadReqTextLogin, "OK");
             }
         }
         private async void OnSignUp(object obj)
