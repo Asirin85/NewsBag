@@ -1,16 +1,13 @@
-﻿using NewsBag.Models;
-using NewsBag.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Xamarin.Forms;
 
 namespace NewsBag.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        
+
         bool isBusy = false;
         public bool IsBusy
         {

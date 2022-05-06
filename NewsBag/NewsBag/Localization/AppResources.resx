@@ -141,6 +141,9 @@
   <data name="DontHaveAccount" xml:space="preserve">
     <value>Еще нет аккаунта? Зарегистрироваться</value>
   </data>
+  <data name="EndLocationPin" xml:space="preserve">
+    <value>Конец пути</value>
+  </data>
   <data name="ErrorInput" xml:space="preserve">
     <value>Ошибка ввода</value>
   </data>
@@ -182,6 +185,9 @@
   </data>
   <data name="Sources" xml:space="preserve">
     <value>lenta.ru rbc.ru un.org</value>
+  </data>
+  <data name="StartLocationPin" xml:space="preserve">
+    <value>Начало пути</value>
   </data>
   <data name="TabBarBookmarks" xml:space="preserve">
     <value>Закладки</value>

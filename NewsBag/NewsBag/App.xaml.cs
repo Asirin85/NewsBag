@@ -1,5 +1,4 @@
-﻿using NewsBag.Services;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace NewsBag
 {

@@ -1,8 +1,6 @@
 ﻿using NewsBag.Localization;
 using NewsBag.Views;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -19,7 +17,7 @@ namespace NewsBag.ViewModels
         }
         async void GetLogin()
         {
-           Login = await SecureStorage.GetAsync("username");
+            Login = await SecureStorage.GetAsync("username");
         }
         async void OnLogOut()
         {

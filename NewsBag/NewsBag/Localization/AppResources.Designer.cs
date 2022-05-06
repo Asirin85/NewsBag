@@ -133,6 +133,15 @@ namespace NewsBag.Localization {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Конец пути.
+        /// </summary>
+        public static string EndLocationPin {
+            get {
+                return ResourceManager.GetString("EndLocationPin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Ошибка ввода.
         /// </summary>
         public static string ErrorInput {
@@ -255,6 +264,15 @@ namespace NewsBag.Localization {
         public static string Sources {
             get {
                 return ResourceManager.GetString("Sources", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Начало пути.
+        /// </summary>
+        public static string StartLocationPin {
+            get {
+                return ResourceManager.GetString("StartLocationPin", resourceCulture);
             }
         }
         

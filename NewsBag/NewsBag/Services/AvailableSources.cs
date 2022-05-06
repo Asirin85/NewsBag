@@ -1,13 +1,10 @@
 ﻿using NewsBag.Localization;
 using NewsBag.Models;
 using NewsBag.Views;
-using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using System.Linq;
 namespace NewsBag.Services
 {
     public class AvailableSources

@@ -56,7 +56,7 @@ namespace NewsBag.ViewModels
             {
                 case "all":
                     var sources1 = AppResources.Sources.ToLowerInvariant().Split(' ');
-                    await GetAll(sources1); 
+                    await GetAll(sources1);
                     await AddNewNews();
                     return;
                 case "все":

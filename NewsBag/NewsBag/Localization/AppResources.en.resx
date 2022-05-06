@@ -141,6 +141,9 @@
   <data name="DontHaveAccount" xml:space="preserve">
     <value>Don't have an account yet? Sign up</value>
   </data>
+  <data name="EndLocationPin" xml:space="preserve">
+    <value>End of the path</value>
+  </data>
   <data name="ErrorInput" xml:space="preserve">
     <value>Input error</value>
   </data>
@@ -182,6 +185,9 @@
   </data>
   <data name="Sources" xml:space="preserve">
     <value>lenta.ru rbc.ru un.org</value>
+  </data>
+  <data name="StartLocationPin" xml:space="preserve">
+    <value>Start of the path</value>
   </data>
   <data name="TabBarBookmarks" xml:space="preserve">
     <value>Bookmarks</value>
