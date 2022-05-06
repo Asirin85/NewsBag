@@ -12,7 +12,9 @@
 		<CollectionView x:Name="ItemsListView"
                 ItemsSource="{Binding NewsItems}"
                 SelectionMode="None"
-						Visual="Material">
+						Visual="Material"
+						AutomationId="BookmarksList"
+						ClassId="BookmarksList">
 			<CollectionView.ItemTemplate>
 				<DataTemplate>
 					<StackLayout Padding="5" x:DataType="model:NewsItem">

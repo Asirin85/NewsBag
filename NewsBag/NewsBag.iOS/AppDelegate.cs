@@ -19,6 +19,10 @@ namespace NewsBag.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+#if ENABLE_TEST_CLOUD
+// requires Xamarin Test Cloud Agent
+Xamarin.Calabash.Start();
+#endif
             global::Xamarin.Forms.Forms.Init();
             global::Xamarin.Forms.FormsMaterial.Init();
             Xamarin.FormsMaps.Init();

@@ -42,7 +42,7 @@
     <DebugType>portable</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\iPhone\Debug</OutputPath>
-    <DefineConstants>DEBUG</DefineConstants>
+    <DefineConstants>DEBUG;__IOS__;__MOBILE__;__UNIFIED__;ENABLE_TEST_CLOUD;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
@@ -139,6 +139,9 @@
     </PackageReference>
     <PackageReference Include="Xamarin.Forms.Visual.Material">
       <Version>5.0.0.2401</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.TestCloud.Agent">
+      <Version>0.23.1</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

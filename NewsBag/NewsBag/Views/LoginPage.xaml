@@ -11,14 +11,14 @@
 	<StackLayout Padding="10,0,10,0" >
 		<Grid VerticalOptions="CenterAndExpand" Padding="10">
 			<Label Text="{x:Static resources:AppResources.LoginLabelAndButton}" Grid.Row="1" HorizontalOptions="Center" FontSize="25" TextColor="MediumPurple"/>
-			<Entry Text="{Binding User.username}" Placeholder="{x:Static resources:AppResources.LoginPlaceholder}" Grid.Row="2"/>
-			<Entry Text="{Binding User.password}" IsPassword="True" Placeholder="{x:Static resources:AppResources.PasswordPlaceholder}" Grid.Row="3"/>
+			<Entry AutomationId="EntryUsernameLogin" Text="{Binding User.username}" Placeholder="{x:Static resources:AppResources.LoginPlaceholder}" Grid.Row="2"/>
+			<Entry AutomationId="EntryPasswordLogin" Text="{Binding User.password}" IsPassword="True" Placeholder="{x:Static resources:AppResources.PasswordPlaceholder}" Grid.Row="3"/>
 			<Label Text="{x:Static resources:AppResources.DontHaveAccount}" Padding="10" TextColor="#7AB5E9" Grid.Row="4" HorizontalOptions="Center">
 				<Label.GestureRecognizers>
 					<TapGestureRecognizer Command="{Binding SignUpCommand}" />
 				</Label.GestureRecognizers>
 			</Label>
 		</Grid>
-		<Button Text="{x:Static resources:AppResources.LoginLabelAndButton}" TextTransform="Uppercase" VerticalOptions="EndAndExpand" Margin="0,0,0,10" BackgroundColor="MediumPurple" Command="{Binding LoginCommand}"/>
+		<Button AutomationId="LoginButton" Text="{x:Static resources:AppResources.LoginLabelAndButton}" TextTransform="Uppercase" VerticalOptions="EndAndExpand" Margin="0,0,0,10" BackgroundColor="MediumPurple" Command="{Binding LoginCommand}"/>
 	</StackLayout>
 </ContentPage>

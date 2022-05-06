@@ -10,7 +10,7 @@
 	<ScrollView>
 	<StackLayout>
 		<Label Margin="50,20,0,0" FontSize="18" Text="{x:Static resources:AppResources.SettingsProfileLabel}" TextColor="MediumPurple"/>
-		<StackLayout>
+		<StackLayout AutomationId="ProfileTap">
 			<Label Margin="50,20,0,0" Text="{x:Static resources:AppResources.SettingsYourProfleLabel}" TextColor="Black"/>
 			<Label Margin="50,0,0,0" Text="{Binding Login}"/>
 			<BoxView HeightRequest="1" Color="LightGray" IsVisible="True"/>
